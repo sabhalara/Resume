@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lara Sabha | Data Analyst & Analytics Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a192f;
+            --accent: #3383f4;
+            --text-main: #2d3436;
+            --text-light: #636e72;
+            --bg: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.7; }
+
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); border-bottom: 1px solid #eee; z-index: 1000; padding: 1.5rem 0; }
+        .nav-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 2rem; }
+        .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary); text-decoration: none; letter-spacing: 1px; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.9rem; margin-left: 2.5rem; transition: 0.3s; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .hero { padding: 12rem 2rem 6rem; max-width: 1100px; margin: 0 auto; }
+        .hero-label { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; display: block; margin-bottom: 1rem; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; line-height: 1.1; color: var(--primary); margin-bottom: 2rem; }
+        .hero p { font-size: 1.3rem; color: var(--text-light); max-width: 750px; margin-bottom: 3rem; font-weight: 300; }
+
+        .hero-stats { display: flex; gap: 3rem; margin-top: 2.5rem; flex-wrap: wrap; }
+        .hero-stat .num { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--primary); display: block; }
+        .hero-stat .label { font-size: 0.8rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
+
+        .section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; border-top: 1px solid #f0f0f0; }
+        .section-header { margin-bottom: 4rem; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); }
+        .section-header p.section-sub { color: var(--text-light); margin-top: 0.75rem; max-width: 650px; }
+
+        .exp-item { margin-bottom: 4rem; display: grid; grid-template-columns: 250px 1fr; gap: 2rem; }
+        .exp-meta { color: var(--text-light); font-weight: 600; font-size: 0.9rem; }
+        .exp-content h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .exp-company { color: var(--accent); font-weight: 600; margin-bottom: 1rem; display: block; }
+        
+        .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+        .project-card { text-decoration: none; color: inherit; }
+        .project-card h4 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 1rem; border-bottom: 2px solid transparent; display: inline-block; transition: 0.3s; }
+        .project-card:hover h4 { border-bottom: 2px solid var(--accent); }
+        .project-card p { color: var(--text-light); font-size: 1rem; margin-bottom: 1rem; }
+        .github-btn { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+
+        .skills-matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; background: #fcfcfc; padding: 3rem; border-radius: 4px; border: 1px solid #f0f0f0; }
+        .skill-group h5 { text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; margin-bottom: 1rem; color: var(--accent); }
+        .skill-list { list-style: none; font-size: 0.95rem; }
+        .skill-list li { margin-bottom: 0.4rem; }
+
+        footer { background: var(--primary); color: white; padding: 4rem 2rem; text-align: center; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .project-grid { grid-template-columns: 1fr; }
+            .skills-matrix { grid-template-columns: 1fr; }
+            .hero-stats { gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="nav-brand">LARA SABHA</a>
+            <div class="nav-links">
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
+                <a href="mailto:larasabha35@gmail.com">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <span class="hero-label">Portfolio 2026</span>
+        <h1>Data Analyst & <br>Analytics Engineer.</h1>
+        <p>Data engineer with two years of experience building and validating large scale data pipelines on GCP and AWS. I focus on data quality, pipeline monitoring, and query optimization to support accurate reporting and analytics across millions of records daily. Currently pursuing a Master of Science in Applied Analytics at USC.</p>
+        <div class="exp-meta">USC APPLIED ANALYTICS (IN PROGRESS) &bull; UCI COMPUTER SCIENCE &bull; CORNELL ML FOUNDATIONS</div>
+        <div class="hero-stats">
+            <div class="hero-stat"><span class="num">Millions</span><span class="label">Records Processed Daily</span></div>
+            <div class="hero-stat"><span class="num">16</span><span class="label">Students Mentored, AI Fellowship</span></div>
+            <div class="hero-stat"><span class="num">100+</span><span class="label">Students Supported as TA</span></div>
+            <div class="hero-stat"><span class="num">2027</span><span class="label">MS Applied Analytics, Expected</span></div>
+        </div>
+    </header>
+
+    <section id="skills" class="section">
+        <div class="section-header">
+            <h2>Skills</h2>
+        </div>
+        <div class="skills-matrix">
+            <div class="skill-group">
+                <h5>Languages</h5>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>SQL (BigQuery, Teradata)</li>
+                    <li>JavaScript, Java</li>
+                    <li>C++, Bash/Shell</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h5>Data Engineering</h5>
+                <ul class="skill-list">
+                    <li>ETL/ELT pipelines</li>
+                    <li>Apache Airflow (DAG design and scheduling)</li>
+                    <li>Data ingestion</li>
+                    <li>Data validation frameworks</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h5>Platforms & Databases</h5>
+                <ul class="skill-list">
+                    <li>Google Cloud Platform (BigQuery)</li>
+                    <li>AWS (EKS), Kubernetes</li>
+                    <li>Teradata</li>
+                    <li>PostgreSQL/MySQL</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h5>Data Quality & Analysis</h5>
+                <ul class="skill-list">
+                    <li>Data validation and quality checks</li>
+                    <li>DataBuck</li>
+                    <li>Query optimization</li>
+                    <li>Tableau (intermediate)</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h5>Tools</h5>
+                <ul class="skill-list">
+                    <li>Docker</li>
+                    <li>GitHub</li>
+                    <li>React</li>
+                    <li>JMeter</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h5>Core Competencies</h5>
+                <ul class="skill-list">
+                    <li>Agile/Scrum</li>
+                    <li>Cross-functional collaboration</li>
+                    <li>Technical documentation</li>
+                    <li>Problem solving</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="section-header"><h2>Work Experience</h2></div>
+        
+        <div class="exp-item">
+            <div class="exp-meta">JUN 2025 - JAN 2026</div>
+            <div class="exp-content">
+                <h3>Data Engineer I</h3>
+                <span class="exp-company">Verizon | Irvine, CA</span>
+                <ul class="skill-list">
+                    <li>Developed and maintained scalable backend workflows and distributed data processing systems handling millions of records daily using Python, Airflow, and GCP.</li>
+                    <li>Analyzed operational datasets in BigQuery to optimize query performance and identify pipeline bottlenecks.</li>
+                    <li>Developed automated validation and monitoring checks that reduced data inconsistencies in reporting.</li>
+                    <li>Supported migration of large scale datasets to GCP BigQuery, improving data consistency and system reliability.</li>
+                    <li>Collaborated cross functionally with software engineers and platform teams to deliver reliable telemetry and reporting solutions.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-meta">JUN 2024 - JUN 2025</div>
+            <div class="exp-content">
+                <h3>Data Engineer Intern</h3>
+                <span class="exp-company">Verizon | Irvine, CA</span>
+                <ul class="skill-list">
+                    <li>Optimized SQL queries on large datasets, reducing query runtime and improving pipeline performance.</li>
+                    <li>Built automated data quality checks to reduce downstream reporting errors.</li>
+                    <li>Monitored and debugged production pipelines, identifying failures and improving system stability.</li>
+                    <li>Maintained and optimized production data pipelines supporting reporting and analytics workflows.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="exp-item">
+            <div class="exp-meta">DEC 2024 - MAR 2025</div>
+            <div class="exp-content">
+                <h3>Teaching Assistant / Grader (CS122B)</h3>
+                <span class="exp-company">UC Irvine | Irvine, CA</span>
+                <ul class="skill-list">
+                    <li>Collaborated with Professor Chen Li to standardize grading and calibrate project expectations for 100+ students, ensuring alignment with production grade standards across 5 key technical milestones of a full-stack capstone project.</li>
+                    <li>Conducted code reviews for full-stack and high-concurrency database applications, emphasizing scalability, maintainability, and performance optimization.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exp-item">
+            <div class="exp-meta">AUG 2023 - JUN 2024</div>
+            <div class="exp-content">
+                <h3>AI Studio Intern</h3>
+                <span class="exp-company">Verizon | Los Angeles, CA</span>
+                <ul class="skill-list">
+                    <li>Built backend ML classification pipelines for product categorization and search ranking support.</li>
+                    <li>Developed automated classification pipelines to improve throughput and scalability in production workloads.</li>
+                    <li>Analyzed model performance metrics to reduce latency and improve retrieval accuracy.</li>
+                    <li>Collaborated with engineers to improve system performance and deployment workflows.</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="exp-item">
+            <div class="exp-meta">NOV 2022 - MAY 2023</div>
+            <div class="exp-content">
+                <h3>Testing Engineer Intern</h3>
+                <span class="exp-company">TC Communications | Irvine, CA</span>
+                <ul class="skill-list">
+                    <li>Tested network protocols including QoS, VLAN, LLDP, and IEEE 802.1X in distributed systems.</li>
+                    <li>Performed network debugging and protocol analysis using Wireshark, SNMP, and PuTTY to identify performance issues.</li>
+                    <li>Documented test results and communicated findings to engineering teams.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership" class="section">
+        <div class="section-header"><h2>Leadership & Activities</h2></div>
+        
+        <div class="exp-item">
+            <div class="exp-meta">MAY 2023 - DEC 2025</div>
+            <div class="exp-content">
+                <h3>Breakthrough Tech AI (Cornell, UCLA, MIT)</h3>
+                
+                <p style="margin-top:10px; font-weight:600; font-size:0.9rem;">AI Program Mentor | Cornell University (Aug 2025 - Dec 2025)</p>
+                <ul class="skill-list">
+                    <li>Mentored 16 students through development of an end-to-end image classification pipeline using Python and computer vision.</li>
+                    <li>Guided technical planning, model evaluation, and project execution across multiple development phases.</li>
+                </ul>
+    
+                <p style="margin-top:10px; font-weight:600; font-size:0.9rem;">AI Fellow | UCLA (May 2023 - Apr 2024)</p>
+                <ul class="skill-list">
+                    <li>18-month fellowship featuring machine learning coursework specializing in feature engineering and NLP.</li>
+                    <li>Developed an ML capstone project, applying optimization techniques and model evaluation to solve complex data problems.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="section-header">
+            <h2>Technical Projects</h2>
+        </div>
+        
+        <div class="project-grid">
+            <div class="project-card">
+                <h4>ChessRank: Bayesian Skill Estimation</h4>
+                <p>Built a <strong>Bayesian inference engine</strong> to estimate player skill and uncertainty across 20,000+ matches. Applied the TrueSkill algorithm to design a rating system that outperformed traditional win-rate baselines by 11.5% in predictive accuracy.</p>
+                <a href="https://github.com/sabhal35/ChessRank-Bayesian-Skill-Estimation" target="_blank" class="github-btn">View Repository <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="project-card">
+                <h4>Computer Vision: YOLO Object Detection</h4>
+                <p>Built an end-to-end <strong>PyTorch</strong> pipeline for real-time object detection. Ran controlled experiments with image augmentation and loss function tuning, tracking mAP (Mean Average Precision) to measure model performance on occluded objects.</p>
+                <a href="https://github.com/sabhal35/Candy_Object_Detection" target="_blank" class="github-btn">View Repository <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="project-card">
+                <h4>Distributed Crawler & Search Index</h4>
+                <p>Built a high-performance web crawler using the <strong>Spacetime</strong> framework. Designed URL frontier analytics and politeness protocols, measuring crawl depth and throughput to optimize data collection across distributed nodes.</p>
+                <a href="https://github.com/trystancfv/spacetime-crawler4py" target="_blank" class="github-btn">View Repository <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="project-card">
+                <h4>Scalable Systems: Cloud Microservices</h4>
+                <p>Deployed a containerized full-stack platform using <strong>Docker and Kubernetes</strong>. Set up MySQL Master-Slave replication for reliability and ran latency profiling with JMeter to benchmark system performance under load.</p>
+                <a href="https://github.com/sabhal35/Fabflix-Fullstack" target="_blank" class="github-btn">View Repository <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="project-card">
+                <h4>Distributed Intelligence: Balnce AI™</h4>
+                <p>Architected a decentralized framework for AI agent orchestration using <strong>Web3 protocols</strong>. Built P2P node synchronization to support a scalable, user-owned alternative to centralized cloud infrastructure.</p>
+                <a href="https://github.com/sabhal35/balnce_ai" target="_blank" class="github-btn">View Repository <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="section-header"><h2>Education</h2></div>
+        <div class="exp-item">
+            <div class="exp-meta">EXPECTED AUG 2027</div>
+            <div class="exp-content">
+                <h3>University of Southern California</h3>
+                <p>Master of Science, Applied Analytics</p>
+            </div>
+        </div>
+        <div class="exp-item">
+            <div class="exp-meta">JUN 2025</div>
+            <div class="exp-content">
+                <h3>University of California, Irvine (UCI)</h3>
+                <p>Bachelor of Science, Computer Science | Dean's Honor List</p>
+            </div>
+        </div>
+        <div class="exp-item">
+            <div class="exp-meta">APR 2024</div>
+            <div class="exp-content">
+                <h3>Cornell University</h3>
+                <p>Certificate in Machine Learning Foundations</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Lara Sabha</p>
+        <div style="margin-top: 1rem; font-size: 0.9rem; color: #636e72;">
+            <span><i class="fas fa-envelope"></i> larasabha35@gmail.com</span> | 
+            <span><i class="fas fa-phone"></i> (949) 422-0956</span>
+        </div>
+        <div style="margin-top: 1.5rem;">
+            <a href="https://linkedin.com/in/lara-sabha" target="_blank" style="color: white; margin: 0 15px; text-decoration: none;">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/sabhal35" target="_blank" style="color: white; margin: 0 15px; text-decoration: none;">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
