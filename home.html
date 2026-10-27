@@ -15,8 +15,6 @@
    :root {
         --navy: #10233f;
         --blue: #2f63a8;
-        --blue-light: #eaf1fb;
-        --blue-mid: #9bb9df;
         --text: #27313d;
         --muted: #5b6676;
         --light: #f7f9fb;
@@ -63,7 +61,7 @@
         z-index: 1200;
         width: 0;
         height: 3px;
-        background: linear-gradient(90deg, var(--blue), #7ca8e0);
+        background: var(--blue);
         transition: width 0.08s linear;
     }
 
@@ -164,20 +162,8 @@
         position: relative;
         overflow: hidden;
         padding: 11rem 0 7rem;
-        background: radial-gradient(ellipse at 92% 18%, rgba(47, 99, 168, 0.12), transparent 34%),
-                    linear-gradient(135deg, #ffffff 55%, #f5f8fd 100%);
-    }
-
-    .hero::after {
-        position: absolute;
-        right: -7rem;
-        bottom: -10rem;
-        width: 25rem;
-        height: 25rem;
-        border: 1px solid rgba(47, 99, 168, 0.14);
-        border-radius: 50%;
-        content: "";
-        pointer-events: none;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
     }
 
     .hero-content {
@@ -319,12 +305,17 @@
     }
 
     .education-card {
-        background: linear-gradient(145deg, var(--blue-light), #ffffff 72%);
+        background: var(--light);
         border: 1px solid var(--border);
-        border-top: 3px solid var(--blue);
+        border-left: 3px solid var(--blue);
         padding: 2rem;
         align-self: start;
-        box-shadow: 0 12px 32px rgba(16, 35, 63, 0.04);
+        transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .education-card:hover {
+        border-left-color: var(--navy);
+        transform: translateY(-3px);
     }
 
     .education-card h3.card-label {
@@ -445,16 +436,16 @@
         text-decoration: none;
         display: flex;
         flex-direction: column;
-        border-top: 3px solid var(--blue-mid);
-        transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+        border-top: 2px solid var(--border);
+        position: relative;
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     a.project-card:hover {
-        transform: translateY(-4px);
-        border-color: var(--blue-mid);
+        transform: translateY(-5px);
+        border-color: #c7d5e5;
         border-top-color: var(--blue);
-        background: #fbfcff;
-        box-shadow: 0 14px 34px rgba(16, 35, 63, 0.09);
+        box-shadow: 0 10px 24px rgba(16, 35, 63, 0.07);
     }
 
     a.project-card:focus-visible {
@@ -590,21 +581,9 @@
     .contact {
         position: relative;
         overflow: hidden;
-        background: linear-gradient(120deg, var(--navy), #183b68);
+        background: var(--navy);
         color: white;
         padding: 6rem 0;
-    }
-
-    .contact::after {
-        position: absolute;
-        top: -9rem;
-        right: -4rem;
-        width: 22rem;
-        height: 22rem;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 50%;
-        content: "";
-        pointer-events: none;
     }
 
     .contact .container {
@@ -658,12 +637,70 @@
         font-size: 0.8rem;
     }
 
+    /* SMALL, PURPOSEFUL INTERACTIONS */
+
+    .hero h1 {
+        animation: rise-in 0.7s ease-out both;
+    }
+
+    .hero-summary {
+        animation: rise-in 0.7s 0.12s ease-out both;
+    }
+
+    .hero-actions {
+        animation: rise-in 0.7s 0.22s ease-out both;
+    }
+
+    .button i,
+    .contact-links i {
+        transition: transform 0.2s ease;
+    }
+
+    .button:hover i {
+        transform: translateX(3px);
+    }
+
+    .contact-links a:hover i {
+        transform: translateY(-2px);
+    }
+
+    .leadership-card {
+        border-left: 2px solid transparent;
+        transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    }
+
+    .leadership-card:hover {
+        border-left-color: var(--blue);
+        background: #f1f5fa;
+        transform: translateX(3px);
+    }
+
+    .skill-group,
+    .outside-item,
+    .principle {
+        transition: background-color 0.22s ease, border-color 0.22s ease;
+    }
+
+    .skill-group:hover,
+    .principle:hover {
+        background-color: #f5f8fc;
+    }
+
+    .outside-item:hover {
+        background-color: #f0f4f9;
+    }
+
+    @keyframes rise-in {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     /* SUBTLE SCROLL REVEALS */
 
     .js .reveal {
         opacity: 0;
         transform: translateY(16px);
-        transition: opacity 0.55s ease, transform 0.55s ease;
+        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
     }
 
     .js .reveal.is-visible {
@@ -1056,16 +1093,14 @@
      <div class="project-grid">
       <div class="project-card">
        <span class="project-type">
-        Applied analytics
+        Verizon Internship · Confidential Project
        </span>
        <h3>
-        Predictive Customer Recommendations
+        Customer Behavior & Predictive Analytics
        </h3>
        <p>
-        Applied analytics project exploring customer
-                            transaction and behavioral data to identify
-                            purchasing patterns and support personalized
-                            product recommendations.
+        Analyzed customer data to identify key behavioral trends 
+                and help drive data-informed business decisions.
        </p>
        <span class="project-tools">
         Python · SQL · Predictive modeling
