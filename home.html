@@ -6,7 +6,7 @@
 
     <title>Lara Sabha | Data Analytics & Engineering</title>
 
-    <meta name="description" content="Lara Sabha is a data engineer and M.S. Applied Analytics student with experience in data engineering, analytics, machine learning, and large-scale data systems.">
+    <meta name="description" content="Lara Sabha is a data engineer moving into analytics. She builds reliable data pipelines, improves data quality, and is completing an M.S. in Applied Analytics at USC.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +17,9 @@
     <style>
         :root {
             --navy: #10233f;
-            --blue: #3d73b9;
+            --blue: #2f63a8;
             --text: #27313d;
-            --muted: #687383;
+            --muted: #5b6676;
             --light: #f7f9fb;
             --border: #e5e9ef;
             --white: #ffffff;
@@ -47,6 +47,28 @@
             color: inherit;
         }
 
+        a:focus-visible,
+        .button:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 3px;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: 1rem;
+            top: -4rem;
+            background: var(--navy);
+            color: white;
+            padding: 0.6rem 1rem;
+            z-index: 2000;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
         .container {
             width: min(1100px, calc(100% - 4rem));
             margin: 0 auto;
@@ -71,6 +93,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 1.5rem;
         }
 
         .nav-brand {
@@ -79,6 +102,7 @@
             color: var(--navy);
             text-decoration: none;
             letter-spacing: 1px;
+            white-space: nowrap;
         }
 
         .nav-links {
@@ -89,10 +113,9 @@
         .nav-links a {
             color: var(--muted);
             text-decoration: none;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
             transition: color 0.2s ease;
         }
 
@@ -113,28 +136,23 @@
         .eyebrow {
             display: block;
             color: var(--blue);
-            font-size: 0.76rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
+            letter-spacing: 0.4px;
             margin-bottom: 1.25rem;
         }
 
         .hero h1 {
             font-family: "Playfair Display", serif;
             color: var(--navy);
-            font-size: clamp(3.4rem, 7vw, 5.7rem);
-            line-height: 1.03;
+            font-size: clamp(3.2rem, 7vw, 5.4rem);
+            line-height: 1.05;
             letter-spacing: -1px;
             margin-bottom: 1.75rem;
         }
 
-        .hero h1 span {
-            color: var(--blue);
-        }
-
         .hero-summary {
-            max-width: 790px;
+            max-width: 760px;
             color: var(--muted);
             font-size: 1.16rem;
             line-height: 1.85;
@@ -143,9 +161,8 @@
         .hero-meta {
             margin-top: 1.5rem;
             color: var(--navy);
-            font-size: 0.83rem;
+            font-size: 0.92rem;
             font-weight: 600;
-            letter-spacing: 0.2px;
         }
 
         .hero-actions {
@@ -159,12 +176,12 @@
             display: inline-flex;
             align-items: center;
             gap: 0.55rem;
-            padding: 0.78rem 1.15rem;
+            padding: 0.8rem 1.2rem;
             border-radius: 3px;
             text-decoration: none;
-            font-size: 0.82rem;
+            font-size: 0.88rem;
             font-weight: 700;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
         }
 
         .button-primary {
@@ -187,21 +204,6 @@
             border-color: #b8c8da;
         }
 
-        .focus-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .focus-item {
-            color: var(--muted);
-            font-size: 0.84rem;
-            font-weight: 600;
-            padding-left: 0.75rem;
-            border-left: 2px solid var(--blue);
-        }
-
         /* SECTIONS */
 
         .section {
@@ -211,16 +213,6 @@
 
         .section-heading {
             margin-bottom: 3rem;
-        }
-
-        .section-label {
-            display: block;
-            color: var(--blue);
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 0.55rem;
         }
 
         .section-heading h2 {
@@ -240,8 +232,9 @@
 
         .about-copy p {
             color: var(--muted);
-            font-size: 1rem;
+            font-size: 1.02rem;
             margin-bottom: 1.25rem;
+            max-width: 65ch;
         }
 
         .about-copy p:last-child {
@@ -252,14 +245,13 @@
             background: var(--light);
             border: 1px solid var(--border);
             padding: 2rem;
+            align-self: start;
         }
 
-        .education-card .card-label {
+        .education-card h3.card-label {
             color: var(--blue);
-            font-size: 0.72rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            letter-spacing: 1.7px;
-            text-transform: uppercase;
             margin-bottom: 1.5rem;
         }
 
@@ -271,16 +263,16 @@
             margin-bottom: 0;
         }
 
-        .education-item h3 {
+        .education-item h4 {
             color: var(--navy);
             font-family: "Playfair Display", serif;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             line-height: 1.3;
         }
 
         .education-item p {
             color: var(--muted);
-            font-size: 0.86rem;
+            font-size: 0.9rem;
             margin-top: 0.25rem;
         }
 
@@ -300,8 +292,8 @@
 
         .experience-date {
             color: var(--muted);
-            font-size: 0.78rem;
-            font-weight: 700;
+            font-size: 0.9rem;
+            font-weight: 600;
             line-height: 1.6;
         }
 
@@ -317,7 +309,7 @@
             display: block;
             color: var(--blue);
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 1rem;
         }
 
@@ -328,9 +320,10 @@
         .experience-content li {
             position: relative;
             color: var(--muted);
-            font-size: 0.93rem;
+            font-size: 0.97rem;
             padding-left: 1.1rem;
             margin-bottom: 0.55rem;
+            max-width: 70ch;
         }
 
         .experience-content li::before {
@@ -338,6 +331,52 @@
             position: absolute;
             left: 0;
             color: var(--blue);
+        }
+
+        /* HOW I WORK */
+
+        .principles-intro {
+            max-width: 680px;
+            color: var(--muted);
+            margin-top: -1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            border: 1px solid var(--border);
+        }
+
+        .principle {
+            padding: 1.9rem 2rem;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .principle:nth-child(2n) {
+            border-right: none;
+        }
+
+        .principle:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+
+        .principle:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            border-right: none;
+        }
+
+        .principle h3 {
+            color: var(--navy);
+            font-family: "Playfair Display", serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .principle p {
+            color: var(--muted);
+            font-size: 0.95rem;
         }
 
         /* PROJECTS */
@@ -356,28 +395,29 @@
         }
 
         .project-card {
-            min-height: 255px;
+            min-height: 240px;
             padding: 2rem;
             border: 1px solid var(--border);
             background: white;
             text-decoration: none;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
-        .project-card:hover {
-            transform: translateY(-4px);
+        a.project-card {
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        a.project-card:hover {
             border-color: #c5d2e0;
             box-shadow: 0 12px 32px rgba(16, 35, 63, 0.07);
         }
 
-        .project-number {
+        .project-type {
             color: var(--blue);
-            font-size: 0.7rem;
+            font-size: 0.82rem;
             font-weight: 700;
-            letter-spacing: 1.8px;
-            margin-bottom: 1rem;
+            margin-bottom: 0.9rem;
         }
 
         .project-card h3 {
@@ -390,16 +430,15 @@
 
         .project-card p {
             color: var(--muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 1.2rem;
         }
 
         .project-tools {
             margin-top: auto;
-            color: var(--blue);
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            color: var(--navy);
+            font-size: 0.82rem;
+            font-weight: 600;
         }
 
         /* SKILLS */
@@ -426,15 +465,13 @@
 
         .skill-group h3 {
             color: var(--navy);
-            font-size: 0.78rem;
-            letter-spacing: 1.4px;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
         }
 
         .skill-group p {
             color: var(--muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         /* LEADERSHIP */
@@ -458,14 +495,59 @@
 
         .leadership-role {
             color: var(--blue);
-            font-size: 0.84rem;
+            font-size: 0.9rem;
             font-weight: 700;
             margin: 0.25rem 0 0.65rem;
         }
 
         .leadership-card p {
             color: var(--muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            max-width: 70ch;
+        }
+
+        .outside-work {
+            margin-top: 4rem;
+        }
+
+        .outside-work h3 {
+            color: var(--navy);
+            font-family: "Playfair Display", serif;
+            font-size: 1.9rem;
+            line-height: 1.25;
+            margin-bottom: 0.6rem;
+        }
+
+        .outside-intro {
+            max-width: 62ch;
+            color: var(--muted);
+            font-size: 1.02rem;
+            margin-bottom: 2rem;
+        }
+
+        .outside-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .outside-item {
+            padding: 1.6rem 1.8rem;
+            border-left: 3px solid var(--blue);
+            background: var(--light);
+        }
+
+        .outside-item h4 {
+            color: var(--navy);
+            font-family: "Playfair Display", serif;
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .outside-item p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            max-width: 60ch;
         }
 
         /* CONTACT */
@@ -476,21 +558,10 @@
             padding: 6rem 0;
         }
 
-        .contact .section-label {
-            color: #9fc4ec;
-        }
-
         .contact h2 {
             font-family: "Playfair Display", serif;
             font-size: 3rem;
             line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        .contact p {
-            max-width: 650px;
-            color: #cbd5e1;
-            font-size: 1rem;
             margin-bottom: 2rem;
         }
 
@@ -503,7 +574,7 @@
         .contact-links a {
             color: white;
             text-decoration: none;
-            font-size: 0.88rem;
+            font-size: 0.95rem;
             font-weight: 600;
         }
 
@@ -511,13 +582,17 @@
             color: #9fc4ec;
         }
 
+        .contact a:focus-visible {
+            outline-color: #9fc4ec;
+        }
+
         footer {
             background: var(--navy);
             border-top: 1px solid rgba(255,255,255,0.12);
-            color: #aeb8c5;
+            color: #b4bfcc;
             text-align: center;
             padding: 1.5rem;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
         }
 
         /* MOBILE */
@@ -528,16 +603,34 @@
                 width: min(100% - 2.5rem, 1100px);
             }
 
+            .nav-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.4rem;
+                padding: 0.8rem 0;
+            }
+
             .nav-links {
-                display: none;
+                gap: 1.2rem;
+                overflow-x: auto;
+                width: 100%;
+                padding-bottom: 0.2rem;
+            }
+
+            .nav-links a {
+                white-space: nowrap;
+            }
+
+            html {
+                scroll-padding-top: 110px;
             }
 
             .hero {
-                padding: 9rem 0 5.5rem;
+                padding: 9.5rem 0 5.5rem;
             }
 
             .hero h1 {
-                font-size: 3.45rem;
+                font-size: 3.1rem;
             }
 
             .hero-summary {
@@ -555,18 +648,24 @@
             }
 
             .project-grid,
-            .skills-grid {
+            .skills-grid,
+            .principles-grid,
+            .outside-grid {
                 grid-template-columns: 1fr;
             }
 
             .skill-group,
             .skill-group:nth-child(2n),
-            .skill-group:nth-last-child(-n+2) {
+            .skill-group:nth-last-child(-n+2),
+            .principle,
+            .principle:nth-child(2n),
+            .principle:nth-last-child(-n+2) {
                 border-right: none;
                 border-bottom: 1px solid var(--border);
             }
 
-            .skill-group:last-child {
+            .skill-group:last-child,
+            .principle:last-child {
                 border-bottom: none;
             }
 
@@ -575,11 +674,21 @@
             }
 
             .section-heading h2 {
-                font-size: 2.2rem;
+                font-size: 2.1rem;
             }
 
             .contact h2 {
                 font-size: 2.45rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition: none !important;
             }
         }
     </style>
@@ -587,9 +696,9 @@
 
 <body>
 
-    <!-- NAVIGATION -->
+    <a href="#main" class="skip-link">Skip to content</a>
 
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main">
         <div class="nav-content">
 
             <a href="#top" class="nav-brand">LARA SABHA</a>
@@ -597,9 +706,9 @@
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#experience">Experience</a>
+                <a href="#how-i-work">How I work</a>
                 <a href="#projects">Projects</a>
                 <a href="#skills">Skills</a>
-                <a href="#education">Education</a>
                 <a href="#contact">Contact</a>
             </div>
 
@@ -607,62 +716,43 @@
     </nav>
 
 
-    <main id="top">
+    <main id="main">
 
         <!-- HERO -->
 
-        <header class="hero">
+        <header class="hero" id="top">
             <div class="container">
 
                 <div class="hero-content">
 
-                    <span class="eyebrow">
-                        Data Analytics · Data Engineering · Machine Learning
-                    </span>
+                    <span class="eyebrow">Data engineer moving into analytics</span>
 
-                    <h1>
-                        Turning data into
-                        <span>reliable solutions.</span>
-                    </h1>
+                    <h1>Turning data into clear, reliable insight.</h1>
 
                     <p class="hero-summary">
-                        I am a data engineer and M.S. Applied Analytics student
-                        with experience across data engineering, analytics, and
-                        machine learning. I have built and optimized data
-                        pipelines, improved data quality, analyzed large-scale
-                        datasets, and developed ML solutions in production
-                        environments.
-                    </p>
-
-                    <p class="hero-meta">
-                        USC M.S. Applied Analytics · UCI B.S. Computer Science
+                        Over a year of data engineering at Verizon, building
+                        scalable pipelines and turning data into clear, dependable
+                        reports. Now pursuing an M.S. in Applied Analytics at USC.
+                        Known for curiosity, attention to detail, and a
+                        collaborative mindset.
                     </p>
 
                     <div class="hero-actions">
 
                         <a href="mailto:larasabha35@gmail.com" class="button button-primary">
                             Contact me
-                            <i class="fas fa-arrow-right"></i>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
                         </a>
 
                         <a href="https://www.linkedin.com/in/lara-sabha" target="_blank" rel="noopener noreferrer" class="button button-secondary">
                             LinkedIn
-                            <i class="fab fa-linkedin"></i>
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
                         </a>
 
                         <a href="https://github.com/sabhal35" target="_blank" rel="noopener noreferrer" class="button button-secondary">
                             GitHub
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-github" aria-hidden="true"></i>
                         </a>
-
-                    </div>
-
-                    <div class="focus-row">
-
-                        <span class="focus-item">Data Analytics</span>
-                        <span class="focus-item">Data Engineering</span>
-                        <span class="focus-item">Machine Learning</span>
-                        <span class="focus-item">Data Quality</span>
 
                     </div>
 
@@ -679,11 +769,7 @@
             <div class="container">
 
                 <div class="section-heading">
-
-                    <span class="section-label">About</span>
-
-                    <h2>Data, analytics & engineering.</h2>
-
+                    <h2>About me.</h2>
                 </div>
 
                 <div class="about-grid">
@@ -691,27 +777,28 @@
                     <div class="about-copy">
 
                         <p>
-                            I am a data engineer with experience working across
-                            data engineering, analytics, and machine learning.
-                            My work has included production data pipelines,
-                            SQL optimization, data validation, monitoring,
-                            and ML classification systems.
+                            I am a data engineer who enjoys making data accurate,
+                            understandable, and useful. My work has included
+                            production data pipelines, SQL optimization, automated
+                            validation and monitoring, and machine learning
+                            classification systems.
                         </p>
 
                         <p>
-                            At Verizon, I worked with large-scale datasets and
-                            cloud-based data systems, using Python, SQL, Airflow,
-                            GCP, and BigQuery to support reliable reporting and
-                            analytics workflows.
+                            At Verizon, I worked with large datasets and cloud-based
+                            systems, using Python, SQL, Airflow, GCP, and BigQuery
+                            to support dependable reporting and analytics workflows.
+                            I also presented findings on customer characteristics and
+                            promotional fallout to my team.
                         </p>
 
                         <p>
-                            I am currently pursuing an M.S. in Applied Analytics
-                            at the University of Southern California. As I
-                            continue developing my analytics background, I am
-                            particularly interested in using data to understand
-                            patterns, evaluate outcomes, and support
-                            data-driven decision making.
+                            I am pursuing my M.S. in Applied Analytics full-time at the
+                            University of Southern California. I am drawn to analytics
+                            because it lets me use data to understand patterns,
+                            evaluate outcomes, and support better decisions, and I
+                            am curious about the range of industries where that work
+                            happens.
                         </p>
 
                     </div>
@@ -719,39 +806,30 @@
 
                     <div class="education-card" id="education">
 
-                        <div class="card-label">Education</div>
+                        <h3 class="card-label">Education</h3>
 
                         <div class="education-item">
-
-                            <h3>University of Southern California</h3>
-
+                            <h4>University of Southern California</h4>
                             <p>
-                                M.S. Applied Analytics<br>
+                                M.S. Applied Analytics (full-time)<br>
                                 Expected August 2027
                             </p>
-
                         </div>
 
                         <div class="education-item">
-
-                            <h3>University of California, Irvine</h3>
-
+                            <h4>University of California, Irvine</h4>
                             <p>
                                 B.S. Computer Science<br>
-                                Dean's Honor List · June 2025
+                                Dean’s Honor List, June 2025
                             </p>
-
                         </div>
 
                         <div class="education-item">
-
-                            <h3>Cornell University</h3>
-
+                            <h4>Cornell University</h4>
                             <p>
                                 Certificate in Machine Learning Foundations<br>
                                 April 2024
                             </p>
-
                         </div>
 
                     </div>
@@ -770,58 +848,40 @@
             <div class="container">
 
                 <div class="section-heading">
-
-                    <span class="section-label">Experience</span>
-
                     <h2>Professional experience.</h2>
-
                 </div>
 
 
                 <div class="experience-item">
 
-                    <div class="experience-date">
-                        JUN 2025 — JAN 2026
-                    </div>
+                    <div class="experience-date">Jun 2025 – Jan 2026</div>
 
                     <div class="experience-content">
 
                         <h3>Data Engineer I</h3>
-
-                        <span class="company">
-                            Verizon · Irvine, CA
-                        </span>
+                        <span class="company">Verizon · Irvine, CA</span>
 
                         <ul>
                             <li>
-                                Developed and maintained scalable backend
-                                workflows and distributed data processing
-                                systems handling millions of records daily
-                                using Python, Airflow, and GCP.
+                                Built and maintained scheduled backend data workflows
+                                using Python, Airflow, and GCP that process millions
+                                of records daily.
                             </li>
-
                             <li>
-                                Analyzed operational datasets in BigQuery to
-                                optimize query performance and identify
-                                pipeline bottlenecks.
+                                Analyzed operational datasets in BigQuery to optimize
+                                query performance and identify pipeline bottlenecks.
                             </li>
-
                             <li>
-                                Developed automated validation and monitoring
-                                checks that reduced data inconsistencies
-                                in reporting.
+                                Developed automated validation and monitoring checks
+                                that reduced data inconsistencies in reporting.
                             </li>
-
                             <li>
-                                Supported migration of large-scale datasets
-                                to GCP BigQuery, improving data consistency
-                                and system reliability.
+                                Supported the migration of large-scale datasets to
+                                GCP BigQuery, improving data consistency and reliability.
                             </li>
-
                             <li>
-                                Collaborated cross-functionally with software
-                                engineers and platform teams to deliver
-                                reliable telemetry and reporting solutions.
+                                Partnered with software engineers and platform teams
+                                to deliver dependable telemetry and reporting solutions.
                             </li>
                         </ul>
 
@@ -832,40 +892,30 @@
 
                 <div class="experience-item">
 
-                    <div class="experience-date">
-                        JUN 2024 — JUN 2025
-                    </div>
+                    <div class="experience-date">Jun 2024 – Aug 2024</div>
 
                     <div class="experience-content">
 
                         <h3>Data Engineer Intern</h3>
-
-                        <span class="company">
-                            Verizon · Irvine, CA
-                        </span>
+                        <span class="company">Verizon · Irvine, CA</span>
 
                         <ul>
                             <li>
-                                Optimized SQL queries on large datasets,
-                                reducing query runtime and improving
-                                pipeline performance.
+                                Presented findings on customer characteristics and the
+                                reasons behind promotional fallout to the team.
                             </li>
-
                             <li>
-                                Built automated data quality checks to
-                                reduce downstream reporting errors.
+                                Optimized SQL queries on large datasets, reducing
+                                runtime and improving pipeline performance.
                             </li>
-
                             <li>
-                                Monitored and debugged production pipelines,
-                                identifying failures and improving system
-                                stability.
+                                Suggested automated data quality checks to reduce
+                                downstream reporting errors.
                             </li>
-
                             <li>
-                                Maintained and optimized production data
-                                pipelines supporting reporting and
-                                analytics workflows.
+                                Traveled to Verizon’s NJ headquarters for internship
+                                week, joining leadership panels, team activities,
+                                and an onsite visit.
                             </li>
                         </ul>
 
@@ -876,39 +926,25 @@
 
                 <div class="experience-item">
 
-                    <div class="experience-date">
-                        AUG 2023 — JUN 2024
-                    </div>
+                    <div class="experience-date">Aug 2023 – Dec 2023</div>
 
                     <div class="experience-content">
 
                         <h3>AI Studio Intern</h3>
-
-                        <span class="company">
-                            Verizon · Los Angeles, CA
-                        </span>
+                        <span class="company">Verizon · Los Angeles, CA</span>
 
                         <ul>
                             <li>
-                                Built backend ML classification pipelines
-                                for product categorization and search
-                                ranking support.
+                                Built backend machine learning classification pipelines
+                                for product categorization and search ranking.
                             </li>
-
                             <li>
-                                Developed automated classification pipelines
-                                to improve throughput and scalability in
-                                production workloads.
+                                Analyzed model performance metrics to reduce latency
+                                and improve retrieval accuracy.
                             </li>
-
                             <li>
-                                Analyzed model performance metrics to reduce
-                                latency and improve retrieval accuracy.
-                            </li>
-
-                            <li>
-                                Collaborated with engineers to improve system
-                                performance and deployment workflows.
+                                Worked with engineers to improve system performance
+                                and deployment workflows.
                             </li>
                         </ul>
 
@@ -919,34 +955,25 @@
 
                 <div class="experience-item">
 
-                    <div class="experience-date">
-                        NOV 2022 — MAY 2023
-                    </div>
+                    <div class="experience-date">Nov 2022 – May 2023</div>
 
                     <div class="experience-content">
 
                         <h3>Testing Engineer Intern</h3>
-
-                        <span class="company">
-                            TC Communications · Irvine, CA
-                        </span>
+                        <span class="company">TC Communications · Irvine, CA</span>
 
                         <ul>
                             <li>
-                                Tested network protocols including QoS,
-                                VLAN, LLDP, and IEEE 802.1X in distributed
-                                systems.
+                                Tested network protocols including QoS, VLAN, LLDP,
+                                and IEEE 802.1X in distributed systems.
                             </li>
-
                             <li>
-                                Performed network debugging and protocol
-                                analysis using Wireshark, SNMP, and PuTTY
-                                to identify performance issues.
+                                Debugged networks and analyzed protocols using
+                                Wireshark, SNMP, and PuTTY to identify performance issues.
                             </li>
-
                             <li>
-                                Documented test results and communicated
-                                findings to engineering teams.
+                                Documented test results and communicated findings
+                                to engineering teams.
                             </li>
                         </ul>
 
@@ -958,7 +985,6 @@
 
         </section>
 
-
         <!-- PROJECTS -->
 
         <section id="projects" class="section">
@@ -966,11 +992,7 @@
             <div class="container">
 
                 <div class="section-heading">
-
-                    <span class="section-label">Selected Work</span>
-
                     <h2>Projects.</h2>
-
                 </div>
 
                 <p class="project-intro">
@@ -981,16 +1003,11 @@
 
                 <div class="project-grid">
 
+                    <div class="project-card">
 
-                    <a href="#" class="project-card">
+                        <span class="project-type">Applied analytics</span>
 
-                        <span class="project-number">
-                            01 · APPLIED ANALYTICS
-                        </span>
-
-                        <h3>
-                            Predictive Customer Recommendations
-                        </h3>
+                        <h3>Predictive Customer Recommendations</h3>
 
                         <p>
                             Applied analytics project exploring customer
@@ -999,11 +1016,9 @@
                             product recommendations.
                         </p>
 
-                        <span class="project-tools">
-                            PYTHON · SQL · PREDICTIVE MODELING
-                        </span>
+                        <span class="project-tools">Python · SQL · Predictive modeling</span>
 
-                    </a>
+                    </div>
 
 
                     <a
@@ -1013,13 +1028,9 @@
                         class="project-card"
                     >
 
-                        <span class="project-number">
-                            02 · MACHINE LEARNING
-                        </span>
+                        <span class="project-type">Machine learning</span>
 
-                        <h3>
-                            ChessRank: Bayesian Skill Estimation
-                        </h3>
+                        <h3>ChessRank: Bayesian Skill Estimation</h3>
 
                         <p>
                             Built a Bayesian inference engine to estimate
@@ -1027,9 +1038,7 @@
                             matches using the TrueSkill algorithm.
                         </p>
 
-                        <span class="project-tools">
-                            PYTHON · BAYESIAN INFERENCE · MACHINE LEARNING
-                        </span>
+                        <span class="project-tools">Python · Bayesian inference · Machine learning</span>
 
                     </a>
 
@@ -1041,13 +1050,9 @@
                         class="project-card"
                     >
 
-                        <span class="project-number">
-                            03 · COMPUTER VISION
-                        </span>
+                        <span class="project-type">Computer vision</span>
 
-                        <h3>
-                            YOLO Object Detection
-                        </h3>
+                        <h3>YOLO Object Detection</h3>
 
                         <p>
                             Built an end-to-end PyTorch computer vision
@@ -1055,9 +1060,7 @@
                             image augmentation and loss-function experiments.
                         </p>
 
-                        <span class="project-tools">
-                            PYTHON · PYTORCH · COMPUTER VISION
-                        </span>
+                        <span class="project-tools">Python · PyTorch · Computer vision</span>
 
                     </a>
 
@@ -1069,13 +1072,9 @@
                         class="project-card"
                     >
 
-                        <span class="project-number">
-                            04 · SCALABLE SYSTEMS
-                        </span>
+                        <span class="project-type">Scalable systems</span>
 
-                        <h3>
-                            Cloud Microservices
-                        </h3>
+                        <h3>Cloud Microservices</h3>
 
                         <p>
                             Deployed a containerized full-stack platform using
@@ -1083,12 +1082,9 @@
                             and JMeter performance testing.
                         </p>
 
-                        <span class="project-tools">
-                            DOCKER · KUBERNETES · MYSQL · JMETER
-                        </span>
+                        <span class="project-tools">Docker · Kubernetes · MySQL · JMeter</span>
 
                     </a>
-
 
                 </div>
 
@@ -1104,84 +1100,68 @@
             <div class="container">
 
                 <div class="section-heading">
-
-                    <span class="section-label">Technical Skills</span>
-
-                    <h2>Tools & technologies.</h2>
-
+                    <h2>Skills and tools.</h2>
                 </div>
 
 
                 <div class="skills-grid">
 
                     <div class="skill-group">
-
-                        <h3>Analytics</h3>
-
+                        <h3>Analytics and reporting</h3>
                         <p>
-                            SQL · BigQuery · Query Optimization · Data Analysis ·
-                            Data Quality · Reporting Workflows · Tableau
+                            BigQuery · Query optimization · Data analysis ·
+                            Data quality · Reporting workflows · Tableau
                         </p>
-
                     </div>
 
-
                     <div class="skill-group">
-
-                        <h3>Data Engineering</h3>
-
+                        <h3>Programming and languages</h3>
                         <p>
-                            Python · ETL/ELT Pipelines · Apache Airflow ·
-                            Data Ingestion · Data Validation · Pipeline Monitoring
+                            Python · SQL · JavaScript · Java · C++ · Bash ·
+                            Docker · GitHub
                         </p>
-
                     </div>
 
-
                     <div class="skill-group">
-
-                        <h3>Machine Learning</h3>
-
+                        <h3>Data engineering</h3>
                         <p>
-                            Machine Learning · Classification · Computer Vision ·
-                            Feature Engineering · NLP · Model Evaluation
+                            ETL/ELT pipelines · Apache Airflow ·
+                            Data ingestion · Data validation · Pipeline monitoring
                         </p>
-
                     </div>
 
-
                     <div class="skill-group">
-
-                        <h3>Cloud & Data Platforms</h3>
-
+                        <h3>Microsoft tools</h3>
                         <p>
-                            Google Cloud Platform · BigQuery · AWS · EKS ·
-                            Kubernetes · Teradata · PostgreSQL · MySQL
+                            Excel · PowerPoint · Copilot · Dashboards ·
+                            Summaries · Reporting
                         </p>
-
                     </div>
 
-
                     <div class="skill-group">
-
-                        <h3>Programming</h3>
-
+                        <h3>Machine learning</h3>
                         <p>
-                            Python · SQL · JavaScript · Java · C++ · Bash/Shell
+                            Classification · Computer vision · Feature engineering ·
+                            NLP · Model evaluation
                         </p>
-
                     </div>
 
+                    <div class="skill-group">
+                        <h3>Cloud and data platforms</h3>
+                        <p>
+                            Google Cloud Platform · AWS (EKS) ·
+                            Kubernetes · Teradata · MySQL
+                        </p>
+                    </div>
 
                     <div class="skill-group">
-
-                        <h3>Tools & Collaboration</h3>
-
+                        <h3>Ways of working</h3>
                         <p>
-                            Docker · GitHub · React · JMeter · Agile/Scrum ·
-                            Technical Documentation · Cross-functional Collaboration
+                            Process improvement ·
+                            Reporting and performance metrics · Agile/Scrum ·
+                            Cross-functional collaboration · Technical documentation ·
+                            Problem solving
                         </p>
-
                     </div>
 
                 </div>
@@ -1193,16 +1173,12 @@
 
         <!-- LEADERSHIP -->
 
-        <section class="section">
+        <section class="section" id="activities">
 
             <div class="container">
 
                 <div class="section-heading">
-
-                    <span class="section-label">Leadership & Activities</span>
-
-                    <h2>Beyond technical work.</h2>
-
+                    <h2>Leadership and activities.</h2>
                 </div>
 
 
@@ -1213,14 +1189,14 @@
                         <h3>Breakthrough Tech AI</h3>
 
                         <div class="leadership-role">
-                            AI Program Mentor · Cornell University · Aug 2025 — Dec 2025
+                            AI Program Mentor · Cornell University · Aug 2025 – Dec 2025
                         </div>
 
                         <p>
-                            Mentored 16 students through development of an
-                            end-to-end image classification pipeline using
-                            Python and computer vision. Guided technical
-                            planning, model evaluation, and project execution.
+                            Mentored 16 students through an end-to-end image
+                            classification project using Python and computer vision.
+                            Guided technical planning, model evaluation, and project
+                            execution across multiple development phases.
                         </p>
 
                     </div>
@@ -1231,14 +1207,14 @@
                         <h3>Breakthrough Tech AI</h3>
 
                         <div class="leadership-role">
-                            AI Fellow · UCLA · May 2023 — Apr 2024
+                            AI Fellow · UCLA · May 2023 – Apr 2024
                         </div>
 
                         <p>
-                            Completed an 18-month machine learning fellowship
-                            featuring coursework in feature engineering and NLP,
-                            along with an ML capstone focused on optimization
-                            and model evaluation.
+                            Completed a 12-month fellowship in machine learning with
+                            a focus on feature engineering and NLP. Developed a
+                            machine learning capstone project applying optimization
+                            techniques and model evaluation.
                         </p>
 
                     </div>
@@ -1249,14 +1225,16 @@
                         <h3>UC Irvine</h3>
 
                         <div class="leadership-role">
-                            Teaching Assistant / Grader · CS122B · Dec 2024 — Mar 2025
+                            Teaching Assistant / Grader (CS122B) · Dec 2024 – Mar 2025
                         </div>
 
                         <p>
-                            Collaborated with Professor Chen Li to standardize
-                            grading for 100+ students and conducted code reviews
-                            for full-stack and high-concurrency database
-                            applications.
+                            Worked with Professor Chen Li to standardize grading and
+                            set clear project expectations for 100+ students across
+                            five milestones of a full-stack capstone. Conducted code
+                            reviews on full-stack, high-concurrency database
+                            applications, with a focus on scalability and
+                            maintainability.
                         </p>
 
                     </div>
@@ -1274,30 +1252,22 @@
 
             <div class="container">
 
-                <span class="section-label">Contact</span>
-
-                <h2>Let's connect.</h2>
-
-                <p>
-                    I am currently pursuing my M.S. in Applied Analytics at USC
-                    and exploring opportunities across data analytics, data
-                    engineering, and machine learning.
-                </p>
+                <h2>Let’s connect.</h2>
 
                 <div class="contact-links">
 
                     <a href="mailto:larasabha35@gmail.com">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         Email
                     </a>
 
                     <a href="https://www.linkedin.com/in/lara-sabha" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i>
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
                         LinkedIn
                     </a>
 
                     <a href="https://github.com/sabhal35" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i>
+                        <i class="fab fa-github" aria-hidden="true"></i>
                         GitHub
                     </a>
 
