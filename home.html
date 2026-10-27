@@ -1,1186 +1,1332 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Lara Sabha | Data Analytics &amp; Engineering
+  </title>
+  <meta content="Lara Sabha is a data engineer moving into analytics. She builds reliable data pipelines, improves data quality, and is completing an M.S. in Applied Analytics at USC." name="description"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <style>
+   :root {
+        --navy: #10233f;
+        --blue: #2f63a8;
+        --blue-light: #eaf1fb;
+        --blue-mid: #9bb9df;
+        --text: #27313d;
+        --muted: #5b6676;
+        --light: #f7f9fb;
+        --border: #e5e9ef;
+        --white: #ffffff;
+    }
 
-    <title>Lara Sabha | Data Analytics & Engineering</title>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <meta name="description" content="Lara Sabha is a data engineer moving into analytics. She builds reliable data pipelines, improves data quality, and is completing an M.S. in Applied Analytics at USC.">
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 90px;
+    }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    body {
+        font-family: "DM Sans", sans-serif;
+        color: var(--text);
+        background: var(--white);
+        line-height: 1.7;
+    }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    a {
+        color: inherit;
+    }
 
-    <style>
-        :root {
-            --navy: #10233f;
-            --blue: #2f63a8;
-            --text: #27313d;
-            --muted: #5b6676;
-            --light: #f7f9fb;
-            --border: #e5e9ef;
-            --white: #ffffff;
-        }
+    a:focus-visible,
+    .button:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 3px;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    ::selection {
+        color: var(--white);
+        background: var(--blue);
+    }
 
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 90px;
-        }
+    .scroll-progress {
+        position: fixed;
+        inset: 0 auto auto 0;
+        z-index: 1200;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--blue), #7ca8e0);
+        transition: width 0.08s linear;
+    }
 
-        body {
-            font-family: "DM Sans", sans-serif;
-            color: var(--text);
-            background: var(--white);
-            line-height: 1.7;
-        }
+    .skip-link {
+        position: absolute;
+        left: 1rem;
+        top: -4rem;
+        background: var(--navy);
+        color: white;
+        padding: 0.6rem 1rem;
+        z-index: 2000;
+        text-decoration: none;
+        font-size: 0.85rem;
+    }
 
-        a {
-            color: inherit;
-        }
+    .skip-link:focus {
+        top: 1rem;
+    }
 
-        a:focus-visible,
-        .button:focus-visible {
-            outline: 3px solid var(--blue);
-            outline-offset: 3px;
-        }
+    .container {
+        width: min(1100px, calc(100% - 4rem));
+        margin: 0 auto;
+    }
 
-        .skip-link {
-            position: absolute;
-            left: 1rem;
-            top: -4rem;
-            background: var(--navy);
-            color: white;
-            padding: 0.6rem 1rem;
-            z-index: 2000;
-            text-decoration: none;
-            font-size: 0.85rem;
-        }
+    /* NAVIGATION */
 
-        .skip-link:focus {
-            top: 1rem;
-        }
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+    }
 
-        .container {
-            width: min(1100px, calc(100% - 4rem));
-            margin: 0 auto;
-        }
+    .nav-content {
+        width: min(1100px, calc(100% - 4rem));
+        margin: 0 auto;
+        padding: 1.2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+    }
 
-        /* NAVIGATION */
+    .nav-brand {
+        font-family: "Playfair Display", serif;
+        font-size: 1.35rem;
+        color: var(--navy);
+        text-decoration: none;
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
 
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        position: relative;
+        padding: 0.35rem 0;
+        transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        content: "";
+        background: var(--blue);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.22s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="location"] {
+        color: var(--navy);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a[aria-current="location"]::after {
+        transform: scaleX(1);
+    }
+
+    /* HERO */
+
+    .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 11rem 0 7rem;
+        background: radial-gradient(ellipse at 92% 18%, rgba(47, 99, 168, 0.12), transparent 34%),
+                    linear-gradient(135deg, #ffffff 55%, #f5f8fd 100%);
+    }
+
+    .hero::after {
+        position: absolute;
+        right: -7rem;
+        bottom: -10rem;
+        width: 25rem;
+        height: 25rem;
+        border: 1px solid rgba(47, 99, 168, 0.14);
+        border-radius: 50%;
+        content: "";
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-content {
+        max-width: 900px;
+    }
+
+    .eyebrow {
+        display: block;
+        color: var(--blue);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        margin-bottom: 1.25rem;
+        text-transform: uppercase;
+    }
+
+    .hero h1 {
+        font-family: "Playfair Display", serif;
+        color: var(--navy);
+        font-size: clamp(3.2rem, 7vw, 5.4rem);
+        line-height: 1.05;
+        letter-spacing: -1px;
+        margin-bottom: 1.75rem;
+    }
+
+    .hero-summary {
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 1.16rem;
+        line-height: 1.85;
+    }
+
+    .hero-meta {
+        margin-top: 1.5rem;
+        color: var(--navy);
+        font-size: 0.92rem;
+        font-weight: 600;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+    }
+
+    .button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.8rem 1.2rem;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 700;
+        border: 1px solid transparent;
+        transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(16, 35, 63, 0.12);
+    }
+
+    .button-primary {
+        color: white;
+        background: var(--navy);
+    }
+
+    .button-primary:hover {
+        background: var(--blue);
+    }
+
+    .button-secondary {
+        color: var(--navy);
+        background: white;
+        border-color: var(--border);
+    }
+
+    .button-secondary:hover {
+        color: var(--navy);
+        background: var(--blue-light);
+        border-color: var(--blue-mid);
+    }
+
+    /* SECTIONS */
+
+    .section {
+        padding: 6rem 0;
+        border-top: 1px solid var(--border);
+    }
+
+    .section-heading {
+        margin-bottom: 3rem;
+    }
+
+    .section-heading h2 {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 0.75rem;
+        font-family: "Playfair Display", serif;
+        color: var(--navy);
+        font-size: 2.55rem;
+        line-height: 1.2;
+    }
+
+    .section-heading h2::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 3rem;
+        height: 3px;
+        content: "";
+        background: var(--blue);
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1.45fr 0.75fr;
+        gap: 5rem;
+    }
+
+    .about-copy p {
+        color: var(--muted);
+        font-size: 1.02rem;
+        margin-bottom: 1.25rem;
+        max-width: 65ch;
+    }
+
+    .about-copy p:last-child {
+        margin-bottom: 0;
+    }
+
+    .education-card {
+        background: linear-gradient(145deg, var(--blue-light), #ffffff 72%);
+        border: 1px solid var(--border);
+        border-top: 3px solid var(--blue);
+        padding: 2rem;
+        align-self: start;
+        box-shadow: 0 12px 32px rgba(16, 35, 63, 0.04);
+    }
+
+    .education-card h3.card-label {
+        color: var(--blue);
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    .education-item {
+        margin-bottom: 1.5rem;
+    }
+
+    .education-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .education-item h4 {
+        color: var(--navy);
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+
+    .education-item p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+    }
+
+    /* EXPERIENCE */
+
+    .experience-item {
+        display: grid;
+        grid-template-columns: 205px 1fr;
+        gap: 3rem;
+        padding: 2.8rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: padding-left 0.2s ease;
+    }
+
+    .experience-item:first-child {
+        padding-top: 0;
+    }
+
+    .experience-item:hover {
+        padding-left: 0.6rem;
+    }
+
+    .experience-date {
+        border-left: 2px solid var(--blue-mid);
+        padding-left: 0.8rem;
+    }
+
+    .experience-date {
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 600;
+        line-height: 1.6;
+    }
+
+    .experience-content h3 {
+        color: var(--navy);
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        line-height: 1.3;
+        margin-bottom: 0.2rem;
+    }
+
+    .company {
+        display: block;
+        color: var(--blue);
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .experience-content ul {
+        list-style: none;
+    }
+
+    .experience-content li {
+        position: relative;
+        color: var(--muted);
+        font-size: 0.97rem;
+        padding-left: 1.1rem;
+        margin-bottom: 0.55rem;
+        max-width: 70ch;
+    }
+
+    .experience-content li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--blue);
+    }
+
+    /* PROJECTS */
+
+    .project-intro {
+        max-width: 700px;
+        color: var(--muted);
+        margin-top: -1.8rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .project-card {
+        min-height: 240px;
+        padding: 2rem;
+        border: 1px solid var(--border);
+        background: white;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        border-top: 3px solid var(--blue-mid);
+        transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    a.project-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--blue-mid);
+        border-top-color: var(--blue);
+        background: #fbfcff;
+        box-shadow: 0 14px 34px rgba(16, 35, 63, 0.09);
+    }
+
+    a.project-card:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 4px;
+    }
+
+    .project-type {
+        color: var(--blue);
+        font-size: 0.82rem;
+        font-weight: 700;
+        margin-bottom: 0.9rem;
+    }
+
+    .project-card h3 {
+        color: var(--navy);
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        line-height: 1.35;
+        margin-bottom: 0.75rem;
+    }
+
+    .project-card p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .project-tools {
+        margin-top: auto;
+        color: var(--navy);
+        font-size: 0.82rem;
+        font-weight: 600;
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border: 1px solid var(--border);
+    }
+
+    .skill-group {
+        padding: 1.9rem 2rem;
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        transition: background 0.2s ease;
+    }
+
+    .skill-group:hover {
+        background: var(--blue-light);
+    }
+
+    .skill-group h3 {
+        position: relative;
+        padding-left: 0.8rem;
+    }
+
+    .skill-group h3::before {
+        position: absolute;
+        top: 0.2rem;
+        bottom: 0.2rem;
+        left: 0;
+        width: 3px;
+        border-radius: 2px;
+        content: "";
+        background: var(--blue);
+    }
+
+    .skill-group:nth-child(2n) {
+        border-right: none;
+    }
+
+    .skill-group:nth-last-child(-n + 2) {
+        border-bottom: none;
+    }
+
+    .skill-group h3 {
+        margin-bottom: 0.6rem;
+        color: var(--navy);
+        font-size: 0.95rem;
+    }
+
+    .skill-group p {
+        color: var(--muted);
+        font-size: 0.95rem;
+    }
+
+
+    /* LEADERSHIP & ACTIVITIES */
+
+    .leadership-list {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .leadership-card {
+        padding: 1.8rem 2rem;
+        background: var(--light);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--blue-mid);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .leadership-card:hover {
+        transform: translateX(4px);
+        border-left-color: var(--blue);
+        box-shadow: 0 10px 26px rgba(16, 35, 63, 0.06);
+    }
+
+    .leadership-card h3 {
+        color: var(--navy);
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+    }
+
+    .leadership-role {
+        margin: 0.25rem 0 0.65rem;
+        color: var(--blue);
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+
+    .leadership-card p {
+        max-width: 70ch;
+        color: var(--muted);
+        font-size: 0.95rem;
+    }
+
+    /* CONTACT */
+
+    .contact {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(120deg, var(--navy), #183b68);
+        color: white;
+        padding: 6rem 0;
+    }
+
+    .contact::after {
+        position: absolute;
+        top: -9rem;
+        right: -4rem;
+        width: 22rem;
+        height: 22rem;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 50%;
+        content: "";
+        pointer-events: none;
+    }
+
+    .contact .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .contact h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        line-height: 1.2;
+        margin-bottom: 2rem;
+    }
+
+    .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .contact-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.65rem 0.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .contact-links a:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.55);
+        transform: translateY(-2px);
+    }
+
+    .contact a:focus-visible {
+        outline-color: #9fc4ec;
+    }
+
+    footer {
+        background: var(--navy);
+        border-top: 1px solid rgba(255,255,255,0.12);
+        color: #b4bfcc;
+        text-align: center;
+        padding: 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    /* SUBTLE SCROLL REVEALS */
+
+    .js .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .js .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+        .container,
+        .nav-content {
+            width: min(100% - 2.5rem, 1100px);
         }
 
         .nav-content {
-            width: min(1100px, calc(100% - 4rem));
-            margin: 0 auto;
-            padding: 1.2rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
-        }
-
-        .nav-brand {
-            font-family: "Playfair Display", serif;
-            font-size: 1.35rem;
-            color: var(--navy);
-            text-decoration: none;
-            letter-spacing: 1px;
-            white-space: nowrap;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.4rem;
+            padding: 0.8rem 0;
         }
 
         .nav-links {
-            display: flex;
-            gap: 2rem;
+            gap: 1.2rem;
+            overflow-x: auto;
+            width: 100%;
+            padding-bottom: 0.2rem;
         }
 
         .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 0.4px;
-            transition: color 0.2s ease;
+            white-space: nowrap;
         }
 
-        .nav-links a:hover {
-            color: var(--blue);
+        html {
+            scroll-padding-top: 110px;
         }
-
-        /* HERO */
 
         .hero {
-            padding: 11rem 0 7rem;
-        }
-
-        .hero-content {
-            max-width: 900px;
-        }
-
-        .eyebrow {
-            display: block;
-            color: var(--blue);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.4px;
-            margin-bottom: 1.25rem;
+            padding: 9.5rem 0 5.5rem;
         }
 
         .hero h1 {
-            font-family: "Playfair Display", serif;
-            color: var(--navy);
-            font-size: clamp(3.2rem, 7vw, 5.4rem);
-            line-height: 1.05;
-            letter-spacing: -1px;
-            margin-bottom: 1.75rem;
+            font-size: 3.1rem;
         }
 
         .hero-summary {
-            max-width: 760px;
-            color: var(--muted);
-            font-size: 1.16rem;
-            line-height: 1.85;
+            font-size: 1.02rem;
         }
 
-        .hero-meta {
-            margin-top: 1.5rem;
-            color: var(--navy);
-            font-size: 0.92rem;
-            font-weight: 600;
+        .about-grid {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
         }
 
-        .hero-actions {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
+        .experience-item {
+            grid-template-columns: 1fr;
+            gap: 0.45rem;
         }
 
-        .button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.55rem;
-            padding: 0.8rem 1.2rem;
-            border-radius: 3px;
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 700;
-            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        .project-grid,
+        .skills-grid,
+        .principles-grid,
+        .outside-grid {
+            grid-template-columns: 1fr;
         }
 
-        .button-primary {
-            color: white;
-            background: var(--navy);
+        .skill-group,
+        .skill-group:nth-child(2n),
+        .skill-group:nth-last-child(-n+2),
+        .principle,
+        .principle:nth-child(2n),
+        .principle:nth-last-child(-n+2) {
+            border-right: none;
+            border-bottom: 1px solid var(--border);
         }
 
-        .button-primary:hover {
-            background: var(--blue);
+        .skill-group:last-child,
+        .principle:last-child {
+            border-bottom: none;
         }
-
-        .button-secondary {
-            color: var(--navy);
-            background: white;
-            border: 1px solid var(--border);
-        }
-
-        .button-secondary:hover {
-            color: var(--blue);
-            border-color: #b8c8da;
-        }
-
-        /* SECTIONS */
 
         .section {
-            padding: 6rem 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .section-heading {
-            margin-bottom: 3rem;
+            padding: 4.5rem 0;
         }
 
         .section-heading h2 {
-            font-family: "Playfair Display", serif;
-            color: var(--navy);
-            font-size: 2.55rem;
-            line-height: 1.2;
-        }
-
-        /* ABOUT */
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.45fr 0.75fr;
-            gap: 5rem;
-        }
-
-        .about-copy p {
-            color: var(--muted);
-            font-size: 1.02rem;
-            margin-bottom: 1.25rem;
-            max-width: 65ch;
-        }
-
-        .about-copy p:last-child {
-            margin-bottom: 0;
-        }
-
-        .education-card {
-            background: var(--light);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            align-self: start;
-        }
-
-        .education-card h3.card-label {
-            color: var(--blue);
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .education-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .education-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .education-item h4 {
-            color: var(--navy);
-            font-family: "Playfair Display", serif;
-            font-size: 1.2rem;
-            line-height: 1.3;
-        }
-
-        .education-item p {
-            color: var(--muted);
-            font-size: 0.9rem;
-            margin-top: 0.25rem;
-        }
-
-        /* EXPERIENCE */
-
-        .experience-item {
-            display: grid;
-            grid-template-columns: 205px 1fr;
-            gap: 3rem;
-            padding: 2.8rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .experience-item:first-child {
-            padding-top: 0;
-        }
-
-        .experience-date {
-            color: var(--muted);
-            font-size: 0.9rem;
-            font-weight: 600;
-            line-height: 1.6;
-        }
-
-        .experience-content h3 {
-            color: var(--navy);
-            font-family: "Playfair Display", serif;
-            font-size: 1.6rem;
-            line-height: 1.3;
-            margin-bottom: 0.2rem;
-        }
-
-        .company {
-            display: block;
-            color: var(--blue);
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .experience-content ul {
-            list-style: none;
-        }
-
-        .experience-content li {
-            position: relative;
-            color: var(--muted);
-            font-size: 0.97rem;
-            padding-left: 1.1rem;
-            margin-bottom: 0.55rem;
-            max-width: 70ch;
-        }
-
-        .experience-content li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--blue);
-        }
-
-        /* PROJECTS */
-
-        .project-intro {
-            max-width: 700px;
-            color: var(--muted);
-            margin-top: -1.8rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            min-height: 240px;
-            padding: 2rem;
-            border: 1px solid var(--border);
-            background: white;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-        a.project-card {
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        a.project-card:hover {
-            border-color: #c5d2e0;
-            box-shadow: 0 12px 32px rgba(16, 35, 63, 0.07);
-        }
-
-        .project-type {
-            color: var(--blue);
-            font-size: 0.82rem;
-            font-weight: 700;
-            margin-bottom: 0.9rem;
-        }
-
-        .project-card h3 {
-            color: var(--navy);
-            font-family: "Playfair Display", serif;
-            font-size: 1.4rem;
-            line-height: 1.35;
-            margin-bottom: 0.75rem;
-        }
-
-        .project-card p {
-            color: var(--muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .project-tools {
-            margin-top: auto;
-            color: var(--navy);
-            font-size: 0.82rem;
-            font-weight: 600;
-        }
-        
-        /* SKILLS */
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            border: 1px solid var(--border);
-        }
-        
-        .skill-group {
-            padding: 1.9rem 2rem;
-            border-right: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .skill-group:nth-child(2n) {
-            border-right: none;
-        }
-        
-        .skill-group:nth-last-child(-n + 2) {
-            border-bottom: none;
-        }
-        
-        .skill-group h3 {
-            margin-bottom: 0.6rem;
-            color: var(--navy);
-            font-size: 0.95rem;
-        }
-        
-        .skill-group p {
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-        
-        
-        /* LEADERSHIP & ACTIVITIES */
-        
-        .leadership-list {
-            display: grid;
-            gap: 1rem;
-        }
-        
-        .leadership-card {
-            padding: 1.8rem 2rem;
-            background: var(--light);
-            border: 1px solid var(--border);
-        }
-        
-        .leadership-card h3 {
-            color: var(--navy);
-            font-family: "Playfair Display", serif;
-            font-size: 1.3rem;
-        }
-        
-        .leadership-role {
-            margin: 0.25rem 0 0.65rem;
-            color: var(--blue);
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-        
-        .leadership-card p {
-            max-width: 70ch;
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        /* CONTACT */
-
-        .contact {
-            background: var(--navy);
-            color: white;
-            padding: 6rem 0;
+            font-size: 2.1rem;
         }
 
         .contact h2 {
-            font-family: "Playfair Display", serif;
-            font-size: 3rem;
-            line-height: 1.2;
-            margin-bottom: 2rem;
+            font-size: 2.45rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
         }
 
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
+        * {
+            transition: none !important;
+            animation: none !important;
         }
 
-        .contact-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
+        .js .reveal {
+            opacity: 1;
+            transform: none;
         }
-
-        .contact-links a:hover {
-            color: #9fc4ec;
-        }
-
-        .contact a:focus-visible {
-            outline-color: #9fc4ec;
-        }
-
-        footer {
-            background: var(--navy);
-            border-top: 1px solid rgba(255,255,255,0.12);
-            color: #b4bfcc;
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.8rem;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 800px) {
-            .container,
-            .nav-content {
-                width: min(100% - 2.5rem, 1100px);
-            }
-
-            .nav-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.4rem;
-                padding: 0.8rem 0;
-            }
-
-            .nav-links {
-                gap: 1.2rem;
-                overflow-x: auto;
-                width: 100%;
-                padding-bottom: 0.2rem;
-            }
-
-            .nav-links a {
-                white-space: nowrap;
-            }
-
-            html {
-                scroll-padding-top: 110px;
-            }
-
-            .hero {
-                padding: 9.5rem 0 5.5rem;
-            }
-
-            .hero h1 {
-                font-size: 3.1rem;
-            }
-
-            .hero-summary {
-                font-size: 1.02rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-
-            .experience-item {
-                grid-template-columns: 1fr;
-                gap: 0.45rem;
-            }
-
-            .project-grid,
-            .skills-grid,
-            .principles-grid,
-            .outside-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skill-group,
-            .skill-group:nth-child(2n),
-            .skill-group:nth-last-child(-n+2),
-            .principle,
-            .principle:nth-child(2n),
-            .principle:nth-last-child(-n+2) {
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .skill-group:last-child,
-            .principle:last-child {
-                border-bottom: none;
-            }
-
-            .section {
-                padding: 4.5rem 0;
-            }
-
-            .section-heading h2 {
-                font-size: 2.1rem;
-            }
-
-            .contact h2 {
-                font-size: 2.45rem;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            * {
-                transition: none !important;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <a href="#main" class="skip-link">Skip to content</a>
-
-    <nav class="navbar" aria-label="Main">
-        <div class="nav-content">
-
-            <a href="#top" class="nav-brand">LARA SABHA</a>
-
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#leadership">Leadership</a>
-                <a href="#contact">Contact</a>
-            </div>
-
-        </div>
-    </nav>
-
-
-    <main id="main">
-
-        <!-- HERO -->
-
-        <header class="hero" id="top">
-            <div class="container">
-
-                <div class="hero-content">
-
-                    <h1>Turning data into clear, reliable insight.</h1>
-
-                    <p class="hero-summary">
-                        Over a year of data engineering at Verizon, building
+    }
+  </style>
+ </head>
+ <body>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">
+   Skip to content
+  </a>
+  <nav aria-label="Main navigation" class="navbar">
+   <div class="nav-content">
+    <a class="nav-brand" href="#top">
+     LARA SABHA
+    </a>
+    <div class="nav-links">
+     <a href="#about">
+      About
+     </a>
+     <a href="#experience">
+      Experience
+     </a>
+     <a href="#projects">
+      Projects
+     </a>
+     <a href="#skills">
+      Skills
+     </a>
+     <a href="#leadership">
+      Leadership
+     </a>
+     <a href="#contact">
+      Contact
+     </a>
+    </div>
+   </div>
+  </nav>
+  <main id="main">
+   <!-- HERO -->
+   <header class="hero" id="top">
+    <div class="container">
+     <div class="hero-content">
+      <h1>
+       Turning data into clear, reliable insight.
+      </h1>
+      <p class="hero-summary">
+       Over a year of data engineering at Verizon, building
                         scalable pipelines and turning data into clear, dependable
                         reports. Now pursuing an M.S. in Applied Analytics at USC.
-                    </p>
-
-                    <div class="hero-actions">
-
-                        <a href="mailto:larasabha35@gmail.com" class="button button-primary">
-                            Contact me
-                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-
-                        <a href="https://www.linkedin.com/in/lara-sabha" target="_blank" rel="noopener noreferrer" class="button button-secondary">
-                            LinkedIn
-                            <i class="fab fa-linkedin" aria-hidden="true"></i>
-                        </a>
-
-                        <a href="https://github.com/sabhal35" target="_blank" rel="noopener noreferrer" class="button button-secondary">
-                            GitHub
-                            <i class="fab fa-github" aria-hidden="true"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </header>
-
-
-        <!-- ABOUT -->
-
-        <section id="about" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <h2>About me.</h2>
-                </div>
-
-                <div class="about-grid">
-
-                    <div class="about-copy">
-
-                        <p>
-                            I am a data engineer who enjoys making data accurate,
+      </p>
+      <div class="hero-actions">
+       <a class="button button-primary" href="mailto:larasabha35@gmail.com">
+        Contact me
+        <i aria-hidden="true" class="fas fa-arrow-right">
+        </i>
+       </a>
+       <a class="button button-secondary" href="https://www.linkedin.com/in/lara-sabha" rel="noopener noreferrer" target="_blank">
+        LinkedIn
+        <i aria-hidden="true" class="fab fa-linkedin">
+        </i>
+       </a>
+       <a class="button button-secondary" href="https://github.com/sabhal35" rel="noopener noreferrer" target="_blank">
+        GitHub
+        <i aria-hidden="true" class="fab fa-github">
+        </i>
+       </a>
+      </div>
+     </div>
+    </div>
+   </header>
+   <!-- ABOUT -->
+   <section class="section" id="about">
+    <div class="container">
+     <div class="section-heading">
+      <h2>
+       About me.
+      </h2>
+     </div>
+     <div class="about-grid">
+      <div class="about-copy">
+       <p>
+        I am a data engineer who enjoys making data accurate,
                             understandable, and useful. My work has included
                             production data pipelines, SQL optimization, automated
                             validation and monitoring, and machine learning
                             classification systems.
-                        </p>
-
-                        <p>
-                            At Verizon, I worked with large datasets and cloud-based
+       </p>
+       <p>
+        At Verizon, I worked with large datasets and cloud-based
                             systems, using Python, SQL, Airflow, GCP, and BigQuery
                             to support dependable reporting and analytics workflows.
                             I also presented findings on customer characteristics and
                             promotional fallout to my team.
-                        </p>
-
-                        <p>
-                            I am pursuing my M.S. in Applied Analytics at the
+       </p>
+       <p>
+        I am pursuing my M.S. in Applied Analytics at the
                             University of Southern California. I am transitioning into 
                             analytics to leverage data to understand patterns, evaluate 
                             outcomes, and support better decisions.
-                        </p>
-
-                    </div>
-
-
-                    <div class="education-card" id="education">
-
-                        <h3 class="card-label">Education</h3>
-
-                        <div class="education-item">
-                            <h4>University of Southern California</h4>
-                            <p>
-                                M.S. Applied Analytics (full-time)<br>
-                                Expected August 2027
-                            </p>
-                        </div>
-
-                        <div class="education-item">
-                            <h4>University of California, Irvine</h4>
-                            <p>
-                                B.S. Computer Science<br>
-                                Dean’s Honor List, June 2025
-                            </p>
-                        </div>
-
-                        <div class="education-item">
-                            <h4>Cornell University</h4>
-                            <p>
-                                Certificate in Machine Learning Foundations<br>
-                                April 2024
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- EXPERIENCE -->
-
-        <section id="experience" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <h2>Professional experience.</h2>
-                </div>
-
-
-                <div class="experience-item">
-
-                    <div class="experience-date">Jun 2025 – Jan 2026</div>
-
-                    <div class="experience-content">
-
-                        <h3>Data Engineer I</h3>
-                        <span class="company">Verizon · Irvine, CA</span>
-
-                        <ul>
-                            <li>
-                                Built and maintained scheduled backend data workflows
+       </p>
+      </div>
+      <div class="education-card" id="education">
+       <h3 class="card-label">
+        Education
+       </h3>
+       <div class="education-item">
+        <h4>
+         University of Southern California
+        </h4>
+        <p>
+         M.S. Applied Analytics (full-time)
+         <br/>
+         Expected August 2027
+        </p>
+       </div>
+       <div class="education-item">
+        <h4>
+         University of California, Irvine
+        </h4>
+        <p>
+         B.S. Computer Science
+         <br/>
+         Dean’s Honor List, June 2025
+        </p>
+       </div>
+       <div class="education-item">
+        <h4>
+         Cornell University
+        </h4>
+        <p>
+         Certificate in Machine Learning Foundations
+         <br/>
+         April 2024
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- EXPERIENCE -->
+   <section class="section" id="experience">
+    <div class="container">
+     <div class="section-heading">
+      <h2>
+       Professional experience.
+      </h2>
+     </div>
+     <div class="experience-item">
+      <div class="experience-date">
+       Jun 2025 – Jan 2026
+      </div>
+      <div class="experience-content">
+       <h3>
+        Data Engineer I
+       </h3>
+       <span class="company">
+        Verizon · Irvine, CA
+       </span>
+       <ul>
+        <li>
+         Built and maintained scheduled backend data workflows
                                 using Python, Airflow, and GCP that process millions
                                 of records daily.
-                            </li>
-                            <li>
-                                Analyzed operational datasets in BigQuery to optimize
+        </li>
+        <li>
+         Analyzed operational datasets in BigQuery to optimize
                                 query performance and identify pipeline bottlenecks.
-                            </li>
-                            <li>
-                                Developed automated validation and monitoring checks
+        </li>
+        <li>
+         Developed automated validation and monitoring checks
                                 that reduced data inconsistencies in reporting.
-                            </li>
-                            <li>
-                                Supported the migration of large-scale datasets to
+        </li>
+        <li>
+         Supported the migration of large-scale datasets to
                                 GCP BigQuery, improving data consistency and reliability.
-                            </li>
-                            <li>
-                                Partnered with software engineers and platform teams
+        </li>
+        <li>
+         Partnered with software engineers and platform teams
                                 to deliver dependable telemetry and reporting solutions.
-                            </li>
-                        </ul>
-
-                    </div>
-
-                </div>
-
-
-                <div class="experience-item">
-
-                    <div class="experience-date">Jun 2024 – Aug 2024</div>
-
-                    <div class="experience-content">
-
-                        <h3>Data Engineer Intern</h3>
-                        <span class="company">Verizon · Irvine, CA</span>
-
-                        <ul>
-                            <li>
-                                Presented findings on customer characteristics and the
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="experience-item">
+      <div class="experience-date">
+       Jun 2024 – Aug 2024
+      </div>
+      <div class="experience-content">
+       <h3>
+        Data Engineer Intern
+       </h3>
+       <span class="company">
+        Verizon · Irvine, CA
+       </span>
+       <ul>
+        <li>
+         Presented findings on customer characteristics and the
                                 reasons behind promotional fallout to the team.
-                            </li>
-                            <li>
-                                Optimized SQL queries on large datasets, reducing
+        </li>
+        <li>
+         Optimized SQL queries on large datasets, reducing
                                 runtime and improving pipeline performance.
-                            </li>
-                            <li>
-                                Suggested automated data quality checks to reduce
+        </li>
+        <li>
+         Suggested automated data quality checks to reduce
                                 downstream reporting errors.
-                            </li>
-                            <li>
-                                Traveled to Verizon’s NJ headquarters for internship
+        </li>
+        <li>
+         Traveled to Verizon’s NJ headquarters for internship
                                 week, joining leadership panels, team activities,
                                 and an onsite visit.
-                            </li>
-                        </ul>
-
-                    </div>
-
-                </div>
-
-
-                <div class="experience-item">
-
-                    <div class="experience-date">Aug 2023 – Dec 2023</div>
-
-                    <div class="experience-content">
-
-                        <h3>AI Studio Intern</h3>
-                        <span class="company">Verizon · Los Angeles, CA</span>
-
-                        <ul>
-                            <li>
-                                Built backend machine learning classification pipelines
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="experience-item">
+      <div class="experience-date">
+       Aug 2023 – Dec 2023
+      </div>
+      <div class="experience-content">
+       <h3>
+        AI Studio Intern
+       </h3>
+       <span class="company">
+        Verizon · Los Angeles, CA
+       </span>
+       <ul>
+        <li>
+         Built backend machine learning classification pipelines
                                 for product categorization and search ranking.
-                            </li>
-                            <li>
-                                Analyzed model performance metrics to reduce latency
+        </li>
+        <li>
+         Analyzed model performance metrics to reduce latency
                                 and improve retrieval accuracy.
-                            </li>
-                            <li>
-                                Worked with engineers to improve system performance
+        </li>
+        <li>
+         Worked with engineers to improve system performance
                                 and deployment workflows.
-                            </li>
-                        </ul>
-
-                    </div>
-
-                </div>
-
-
-                <div class="experience-item">
-
-                    <div class="experience-date">Nov 2022 – May 2023</div>
-
-                    <div class="experience-content">
-
-                        <h3>Testing Engineer Intern</h3>
-                        <span class="company">TC Communications · Irvine, CA</span>
-
-                        <ul>
-                            <li>
-                                Tested network protocols including QoS, VLAN, LLDP,
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="experience-item">
+      <div class="experience-date">
+       Nov 2022 – May 2023
+      </div>
+      <div class="experience-content">
+       <h3>
+        Testing Engineer Intern
+       </h3>
+       <span class="company">
+        TC Communications · Irvine, CA
+       </span>
+       <ul>
+        <li>
+         Tested network protocols including QoS, VLAN, LLDP,
                                 and IEEE 802.1X in distributed systems.
-                            </li>
-                            <li>
-                                Debugged networks and analyzed protocols using
+        </li>
+        <li>
+         Debugged networks and analyzed protocols using
                                 Wireshark, SNMP, and PuTTY to identify performance issues.
-                            </li>
-                            <li>
-                                Documented test results and communicated findings
+        </li>
+        <li>
+         Documented test results and communicated findings
                                 to engineering teams.
-                            </li>
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- PROJECTS -->
-
-        <section id="projects" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <h2>Projects.</h2>
-                </div>
-
-                <p class="project-intro">
-                    A selection of work across analytics, machine learning,
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- PROJECTS -->
+   <section class="section" id="projects">
+    <div class="container">
+     <div class="section-heading">
+      <h2>
+       Projects.
+      </h2>
+     </div>
+     <p class="project-intro">
+      A selection of work across analytics, machine learning,
                     computer vision, and scalable software systems.
-                </p>
-
-
-                <div class="project-grid">
-
-                    <div class="project-card">
-
-                        <span class="project-type">Applied analytics</span>
-
-                        <h3>Predictive Customer Recommendations</h3>
-
-                        <p>
-                            Applied analytics project exploring customer
+     </p>
+     <div class="project-grid">
+      <div class="project-card">
+       <span class="project-type">
+        Applied analytics
+       </span>
+       <h3>
+        Predictive Customer Recommendations
+       </h3>
+       <p>
+        Applied analytics project exploring customer
                             transaction and behavioral data to identify
                             purchasing patterns and support personalized
                             product recommendations.
-                        </p>
-
-                        <span class="project-tools">Python · SQL · Predictive modeling</span>
-
-                    </div>
-
-
-                    <a
-                        href="https://github.com/sabhal35/ChessRank-Bayesian-Skill-Estimation"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="project-card"
-                    >
-
-                        <span class="project-type">Machine learning</span>
-
-                        <h3>ChessRank: Bayesian Skill Estimation</h3>
-
-                        <p>
-                            Built a Bayesian inference engine to estimate
+       </p>
+       <span class="project-tools">
+        Python · SQL · Predictive modeling
+       </span>
+      </div>
+      <a class="project-card" href="https://github.com/sabhal35/ChessRank-Bayesian-Skill-Estimation" rel="noopener noreferrer" target="_blank">
+       <span class="project-type">
+        Machine learning
+       </span>
+       <h3>
+        ChessRank: Bayesian Skill Estimation
+       </h3>
+       <p>
+        Built a Bayesian inference engine to estimate
                             player skill and uncertainty across 20,000+
                             matches using the TrueSkill algorithm.
-                        </p>
-
-                        <span class="project-tools">Python · Bayesian inference · Machine learning</span>
-
-                    </a>
-
-
-                    <a
-                        href="https://github.com/sabhal35/Candy_Object_Detection"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="project-card"
-                    >
-
-                        <span class="project-type">Computer vision</span>
-
-                        <h3>YOLO Object Detection</h3>
-
-                        <p>
-                            Built an end-to-end PyTorch computer vision
+       </p>
+       <span class="project-tools">
+        Python · Bayesian inference · Machine learning
+       </span>
+      </a>
+      <a class="project-card" href="https://github.com/sabhal35/Candy_Object_Detection" rel="noopener noreferrer" target="_blank">
+       <span class="project-type">
+        Computer vision
+       </span>
+       <h3>
+        YOLO Object Detection
+       </h3>
+       <p>
+        Built an end-to-end PyTorch computer vision
                             pipeline and evaluated model performance using
                             image augmentation and loss-function experiments.
-                        </p>
-
-                        <span class="project-tools">Python · PyTorch · Computer vision</span>
-
-                    </a>
-
-
-                    <a
-                        href="https://github.com/sabhal35/Fabflix-Fullstack"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="project-card"
-                    >
-
-                        <span class="project-type">Scalable systems</span>
-
-                        <h3>Cloud Microservices</h3>
-
-                        <p>
-                            Deployed a containerized full-stack platform using
+       </p>
+       <span class="project-tools">
+        Python · PyTorch · Computer vision
+       </span>
+      </a>
+      <a class="project-card" href="https://github.com/sabhal35/Fabflix-Fullstack" rel="noopener noreferrer" target="_blank">
+       <span class="project-type">
+        Scalable systems
+       </span>
+       <h3>
+        Cloud Microservices
+       </h3>
+       <p>
+        Deployed a containerized full-stack platform using
                             Docker and Kubernetes, with MySQL replication
                             and JMeter performance testing.
-                        </p>
-
-                        <span class="project-tools">Docker · Kubernetes · MySQL · JMeter</span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SKILLS -->
-
-        <section id="skills" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <h2>Skills and tools.</h2>
-                </div>
-
-
-                <div class="skills-grid">
-
-                    <div class="skill-group">
-                        <h3>Analytics and reporting</h3>
-                        <p>
-                            BigQuery · Query optimization · Data analysis ·
+       </p>
+       <span class="project-tools">
+        Docker · Kubernetes · MySQL · JMeter
+       </span>
+      </a>
+     </div>
+    </div>
+   </section>
+   <!-- SKILLS -->
+   <section class="section" id="skills">
+    <div class="container">
+     <div class="section-heading">
+      <h2>
+       Skills and tools.
+      </h2>
+     </div>
+     <div class="skills-grid">
+      <div class="skill-group">
+       <h3>
+        Analytics and reporting
+       </h3>
+       <p>
+        BigQuery · Query optimization · Data analysis ·
                             Data quality · Reporting workflows · Tableau · 
-                            Excel · PowerPoint · Dashboards 
-                        </p>
-                    </div>
-
-                    <div class="skill-group">
-                        <h3>Programming and languages</h3>
-                        <p>
-                            Python · SQL · JavaScript · Java · C++ · Bash ·
+                            Excel · PowerPoint · Dashboards
+       </p>
+      </div>
+      <div class="skill-group">
+       <h3>
+        Programming and languages
+       </h3>
+       <p>
+        Python · SQL · JavaScript · Java · C++ · Bash ·
                             Docker · GitHub
-                        </p>
-                    </div>
-
-                    <div class="skill-group">
-                        <h3>Data engineering</h3>
-                        <p>
-                            ETL/ELT pipelines · Apache Airflow ·
+       </p>
+      </div>
+      <div class="skill-group">
+       <h3>
+        Data engineering
+       </h3>
+       <p>
+        ETL/ELT pipelines · Apache Airflow ·
                             Data ingestion · Data validation · Pipeline monitoring
-                        </p>
-                    </div>
-
-                    <div class="skill-group">
-                        <h3>Machine learning</h3>
-                        <p>
-                            Classification · Computer vision · Feature engineering ·
+       </p>
+      </div>
+      <div class="skill-group">
+       <h3>
+        Machine learning
+       </h3>
+       <p>
+        Classification · Computer vision · Feature engineering ·
                             NLP · Model evaluation · Copilot
-                        </p>
-                    </div>
-
-                    <div class="skill-group">
-                        <h3>Cloud and data platforms</h3>
-                        <p>
-                            Google Cloud Platform · AWS (EKS) ·
+       </p>
+      </div>
+      <div class="skill-group">
+       <h3>
+        Cloud and data platforms
+       </h3>
+       <p>
+        Google Cloud Platform · AWS (EKS) ·
                             Kubernetes · Teradata · MySQL
-                        </p>
-                    </div>
-
-                    <div class="skill-group">
-                        <h3>Ways of working</h3>
-                        <p>
-                            Process improvement ·
+       </p>
+      </div>
+      <div class="skill-group">
+       <h3>
+        Ways of working
+       </h3>
+       <p>
+        Process improvement ·
                             Reporting and performance metrics · Agile/Scrum ·
                             Cross-functional collaboration · Technical documentation ·
                             Problem solving
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- LEADERSHIP -->
-
-        <section class="section" id="activities">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <h2>Leadership and activities.</h2>
-                </div>
-
-
-                <div class="leadership-list">
-
-                    <div class="leadership-card">
-
-                        <h3>Breakthrough Tech AI</h3>
-
-                        <div class="leadership-role">
-                            AI Program Mentor · Cornell University · Aug 2025 – Dec 2025
-                        </div>
-
-                        <p>
-                            Mentored 16 students through an end-to-end image
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- LEADERSHIP -->
+   <section class="section" id="leadership">
+    <div class="container">
+     <div class="section-heading">
+      <h2>
+       Leadership and activities.
+      </h2>
+     </div>
+     <div class="leadership-list">
+      <div class="leadership-card">
+       <h3>
+        Breakthrough Tech AI
+       </h3>
+       <div class="leadership-role">
+        AI Program Mentor · Cornell University · Aug 2025 – Dec 2025
+       </div>
+       <p>
+        Mentored 16 students through an end-to-end image
                             classification project using Python and computer vision.
                             Guided technical planning, model evaluation, and project
                             execution across multiple development phases.
-                        </p>
-
-                    </div>
-
-
-                    <div class="leadership-card">
-
-                        <h3>Breakthrough Tech AI</h3>
-
-                        <div class="leadership-role">
-                            AI Fellow · UCLA · May 2023 – Apr 2024
-                        </div>
-
-                        <p>
-                            Completed a 12-month fellowship in machine learning with
+       </p>
+      </div>
+      <div class="leadership-card">
+       <h3>
+        Breakthrough Tech AI
+       </h3>
+       <div class="leadership-role">
+        AI Fellow · UCLA · May 2023 – Apr 2024
+       </div>
+       <p>
+        Completed a 12-month fellowship in machine learning with
                             a focus on feature engineering and NLP. Developed a
                             machine learning capstone project applying optimization
                             techniques and model evaluation.
-                        </p>
-
-                    </div>
-
-
-                    <div class="leadership-card">
-
-                        <h3>UC Irvine</h3>
-
-                        <div class="leadership-role">
-                            Teaching Assistant / Grader (CS122B) · Dec 2024 – Mar 2025
-                        </div>
-
-                        <p>
-                            Worked with Professor Chen Li to standardize grading and
+       </p>
+      </div>
+      <div class="leadership-card">
+       <h3>
+        UC Irvine
+       </h3>
+       <div class="leadership-role">
+        Teaching Assistant / Grader (CS122B) · Dec 2024 – Mar 2025
+       </div>
+       <p>
+        Worked with Professor Chen Li to standardize grading and
                             set clear project expectations for 100+ students across
                             five milestones of a full-stack capstone. Conducted code
                             reviews on full-stack, high-concurrency database
                             applications, with a focus on scalability and
                             maintainability.
-                        </p>
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- CONTACT -->
+   <section class="contact" id="contact">
+    <div class="container">
+     <h2>
+      Let’s connect.
+     </h2>
+     <div class="contact-links">
+      <a href="mailto:larasabha35@gmail.com">
+       <i aria-hidden="true" class="fas fa-envelope">
+       </i>
+       Email
+      </a>
+      <a href="https://www.linkedin.com/in/lara-sabha" rel="noopener noreferrer" target="_blank">
+       <i aria-hidden="true" class="fab fa-linkedin">
+       </i>
+       LinkedIn
+      </a>
+      <a href="https://github.com/sabhal35" rel="noopener noreferrer" target="_blank">
+       <i aria-hidden="true" class="fab fa-github">
+       </i>
+       GitHub
+      </a>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer>
+   © 2026 Lara Sabha
+  </footer>
+  <script>
+   document.documentElement.classList.add("js");
 
-                    </div>
+   const progressBar = document.querySelector(".scroll-progress");
+   const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+   const sections = navLinks
+       .map((link) => document.querySelector(link.getAttribute("href")))
+       .filter(Boolean);
 
-                </div>
+   function updateScrollProgress() {
+       const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+       const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+       progressBar.style.width = `${Math.min(progress, 100)}%`;
+   }
 
-            </div>
+   updateScrollProgress();
+   window.addEventListener("scroll", updateScrollProgress, { passive: true });
+   window.addEventListener("resize", updateScrollProgress);
 
-        </section>
+   if ("IntersectionObserver" in window) {
+       const revealObserver = new IntersectionObserver((entries, observer) => {
+           entries.forEach((entry) => {
+               if (entry.isIntersecting) {
+                   entry.target.classList.add("is-visible");
+                   observer.unobserve(entry.target);
+               }
+           });
+       }, { threshold: 0.12 });
 
+       document.querySelectorAll(".section-heading, .about-copy, .education-card, .experience-item, .project-card, .skill-group, .leadership-card, .contact h2, .contact-links").forEach((element) => {
+           element.classList.add("reveal");
+           revealObserver.observe(element);
+       });
 
-        <!-- CONTACT -->
+       const sectionObserver = new IntersectionObserver((entries) => {
+           entries.forEach((entry) => {
+               if (!entry.isIntersecting) return;
+               navLinks.forEach((link) => {
+                   if (link.getAttribute("href") === `#${entry.target.id}`) {
+                       link.setAttribute("aria-current", "location");
+                   } else {
+                       link.removeAttribute("aria-current");
+                   }
+               });
+           });
+       }, { rootMargin: "-25% 0px -60% 0px" });
 
-        <section id="contact" class="contact">
-
-            <div class="container">
-
-                <h2>Let’s connect.</h2>
-
-                <div class="contact-links">
-
-                    <a href="mailto:larasabha35@gmail.com">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        Email
-                    </a>
-
-                    <a href="https://www.linkedin.com/in/lara-sabha" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin" aria-hidden="true"></i>
-                        LinkedIn
-                    </a>
-
-                    <a href="https://github.com/sabhal35" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github" aria-hidden="true"></i>
-                        GitHub
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <footer>
-        © 2026 Lara Sabha
-    </footer>
-
-</body>
+       sections.forEach((section) => sectionObserver.observe(section));
+   } else {
+       document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));
+   }
+  </script>
+ </body>
 </html>
