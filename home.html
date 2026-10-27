@@ -333,52 +333,6 @@
             color: var(--blue);
         }
 
-        /* HOW I WORK */
-
-        .principles-intro {
-            max-width: 680px;
-            color: var(--muted);
-            margin-top: -1.8rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .principles-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            border: 1px solid var(--border);
-        }
-
-        .principle {
-            padding: 1.9rem 2rem;
-            border-right: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .principle:nth-child(2n) {
-            border-right: none;
-        }
-
-        .principle:nth-last-child(-n+2) {
-            border-bottom: none;
-        }
-
-        .principle:last-child:nth-child(odd) {
-            grid-column: 1 / -1;
-            border-right: none;
-        }
-
-        .principle h3 {
-            color: var(--navy);
-            font-family: "Playfair Display", serif;
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .principle p {
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
         /* PROJECTS */
 
         .project-intro {
@@ -440,114 +394,71 @@
             font-size: 0.82rem;
             font-weight: 600;
         }
-
+        
         /* SKILLS */
-
+        
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             border: 1px solid var(--border);
         }
-
+        
         .skill-group {
             padding: 1.9rem 2rem;
             border-right: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
-
+        
         .skill-group:nth-child(2n) {
             border-right: none;
         }
-
-        .skill-group:nth-last-child(-n+2) {
+        
+        .skill-group:nth-last-child(-n + 2) {
             border-bottom: none;
         }
-
+        
         .skill-group h3 {
+            margin-bottom: 0.6rem;
             color: var(--navy);
             font-size: 0.95rem;
-            margin-bottom: 0.6rem;
         }
-
+        
         .skill-group p {
             color: var(--muted);
             font-size: 0.95rem;
         }
-
-        /* LEADERSHIP */
-
+        
+        
+        /* LEADERSHIP & ACTIVITIES */
+        
         .leadership-list {
             display: grid;
             gap: 1rem;
         }
-
+        
         .leadership-card {
             padding: 1.8rem 2rem;
             background: var(--light);
             border: 1px solid var(--border);
         }
-
+        
         .leadership-card h3 {
             color: var(--navy);
             font-family: "Playfair Display", serif;
             font-size: 1.3rem;
         }
-
+        
         .leadership-role {
+            margin: 0.25rem 0 0.65rem;
             color: var(--blue);
             font-size: 0.9rem;
             font-weight: 700;
-            margin: 0.25rem 0 0.65rem;
         }
-
+        
         .leadership-card p {
-            color: var(--muted);
-            font-size: 0.95rem;
             max-width: 70ch;
-        }
-
-        .outside-work {
-            margin-top: 4rem;
-        }
-
-        .outside-work h3 {
-            color: var(--navy);
-            font-family: "Playfair Display", serif;
-            font-size: 1.9rem;
-            line-height: 1.25;
-            margin-bottom: 0.6rem;
-        }
-
-        .outside-intro {
-            max-width: 62ch;
-            color: var(--muted);
-            font-size: 1.02rem;
-            margin-bottom: 2rem;
-        }
-
-        .outside-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
-        }
-
-        .outside-item {
-            padding: 1.6rem 1.8rem;
-            border-left: 3px solid var(--blue);
-            background: var(--light);
-        }
-
-        .outside-item h4 {
-            color: var(--navy);
-            font-family: "Playfair Display", serif;
-            font-size: 1.15rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .outside-item p {
             color: var(--muted);
             font-size: 0.95rem;
-            max-width: 60ch;
         }
 
         /* CONTACT */
@@ -708,7 +619,7 @@
                 <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
                 <a href="#skills">Skills</a>
-                <a href="#how-i-work">Leadership</a>
+                <a href="#leadership">Leadership</a>
                 <a href="#contact">Contact</a>
             </div>
 
